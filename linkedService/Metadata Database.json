@@ -1,24 +1,17 @@
 {
 	"name": "Metadata Database",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"server": "fj1sqlserver-hqpem8g.database.windows.net",
+			"server": "fj1sqlserver-eqsod3m.database.windows.net",
 			"database": "fj1-metadata-uks",
 			"encrypt": "mandatory",
 			"trustServerCertificate": false,
 			"authenticationType": "SQL",
 			"userName": "dylan",
-			"password": {
-				"type": "AzureKeyVaultSecret",
-				"store": {
-					"referenceName": "Azure Key Vault",
-					"type": "LinkedServiceReference"
-				},
-				"secretName": "sqlPassword"
-			}
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQERBQkFFRUQ3LTM3MTctNDUwQS1BNURBLTJFODVEMjhCRjJGNl9lY2Q4ZWQxZC01ZGM2LTQ2ZmQtODE3Ni03ZTlmMGNhZDg5ZmUiDQp9"
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/linkedservices"
+	}
 }
