@@ -15,6 +15,5 @@
 			},
 			"existingClusterId": "0303-230033-mdotan49"
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/linkedservices"
+	}
 }

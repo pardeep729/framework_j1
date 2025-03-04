@@ -21,14 +21,6 @@ resource "azurerm_key_vault" "fj1kv" {
   enable_rbac_authorization  = true
 }
 
-# Write name of keyvault to .env file:
-resource "local_file" "env_file" {
-  filename = "../.env"
-  content  = <<EOT
-k-v_name="${azurerm_key_vault.fj1kv.name}"
-EOT
-}
-
 
 # RBAC:
 
@@ -150,6 +142,14 @@ resource "azurerm_key_vault_secret" "storeContainerName" {
 resource "azurerm_key_vault_secret" "storePAT" {
   name = "databricks-junior-token"
   value = databricks_token.db_pat.token_value
+  key_vault_id = azurerm_key_vault.fj1kv.id
+  depends_on = [ databricks_token.db_pat, azurerm_role_assignment.databricks_kv_admin ]
+}
+
+# Store Databricks workspace url in KeyVault
+resource "azurerm_key_vault_secret" "workspaceURL" {
+  name = "databricks-workspace-url"
+  value = azurerm_databricks_workspace.dbs_workspace.workspace_url
   key_vault_id = azurerm_key_vault.fj1kv.id
   depends_on = [ databricks_token.db_pat, azurerm_role_assignment.databricks_kv_admin ]
 }
